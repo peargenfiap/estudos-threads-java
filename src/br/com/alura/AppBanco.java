@@ -10,12 +10,17 @@ public class AppBanco {
 
         var operacaoSaque = new OperacaoSaque(conta, new BigDecimal("150"));
 
-        // Saque do João
-        operacaoSaque.executa();
-        // Saque da Maria
-        operacaoSaque.executa();
-
         // Para realizar operações simultâneas, é necessário utilziar Threads.
+
+        // Criação de uma Thread
+        Thread saqueDoJoao = new Thread(operacaoSaque);
+        Thread saqueDaMaria = new Thread(operacaoSaque);
+
+        // Inicializando as Threads
+        saqueDoJoao.start();
+        saqueDaMaria.start();
+
+        System.out.println(Thread.currentThread().getName());
 
     }
 
